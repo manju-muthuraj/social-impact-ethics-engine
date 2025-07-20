@@ -68,32 +68,52 @@ This section provides instructions for testing the deployed APIs using both `cur
 
 ### Using Postman (Recommended)
 
-1.  **Download and Install Postman:** If you don't have it, download Postman from [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
+1.  **Download and Install Postman:**
+    If you don't have it, download Postman from [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
+
 
 2.  **Import Postman Collection:**
+    
     a.  Open Postman.
+    
     b.  Click on `File > Import`.
+    
     c.  Select the `Social Impact Ethics Engine API.postman_collection.json` file from the root of this project.
+    
     d.  Postman will create a new collection based on the API definition.
 
+
 3.  **Configure Environment Variables:**
+    
     a.  After deployment, you will get `YOUR_API_GATEWAY_URL`, `YOUR_COGNITO_USER_POOL_CLIENT_ID`, and `YOUR_COGNITO_USER_POOL_ID` from the CDK output.
+    
     b.  In Postman, create a new environment (click the gear icon in the top right).
+    
     c.  Add the following variables to your environment:
         -   `API_GATEWAY_URL`: Your deployed API Gateway URL (e.g., `https://xxxxxxxxx.execute-api.us-east-1.amazonaws.com/prod`)
         -   `COGNITO_USER_POOL_CLIENT_ID`: Your Cognito User Pool Client ID.
         -   `COGNITO_USER_POOL_ID`: Your Cognito User Pool ID.
+    
     d.  Select this new environment as the active environment.
 
+
 4.  **Authentication (Cognito) in Postman:**
+    
     a.  **Sign Up:** You'll need to use the AWS CLI for the initial sign-up and confirmation steps as described in the "Using AWS CLI (Example)" section below.
+
+    
     b.  **Get ID Token:** Once your user is confirmed, you can use a Postman request to get the ID Token.
-        -   Create a new `POST` request.
+
+    -   Create a new `POST` request.
+        
         -   **URL:** `https://cognito-idp.<YOUR_AWS_REGION>.amazonaws.com/` (e.g., `https://cognito-idp.us-east-1.amazonaws.com/`)
+        
         -   **Headers:**
             -   `Content-Type`: `application/x-amz-json-1.1`
             -   `X-Amz-Target`: `AWSCognitoIdentityProviderService.InitiateAuth`
+        
         -   **Body (raw JSON):**
+        
             ```json
             {
                 "AuthFlow": "USER_PASSWORD_AUTH",
@@ -104,40 +124,49 @@ This section provides instructions for testing the deployed APIs using both `cur
                 "ClientId": "{{COGNITO_USER_POOL_CLIENT_ID}}"
             }
             ```
+        
         -   Send the request. The `AuthenticationResult.IdToken` from the response is your `YOUR_ID_TOKEN`.
 
+
 5.  **Using the Imported Collection:**
+
     a.  In the imported collection, select the request you want to test (e.g., `GET /upload-url`).
+
     b.  **Update URL:** The URL should automatically use `{{API_GATEWAY_URL}}` from your environment.
+
     c.  **Authorization:** Go to the `Authorization` tab, select `Bearer Token` from the `Type` dropdown, and paste your `YOUR_ID_TOKEN` into the `Token` field.
+    
     d.  **Send Request:** Execute the request.
 
 ### Using AWS CLI (Example)
 
-### 1. Authentication (Cognito)
+#### 1. Authentication (Cognito)
 Before interacting with the APIs, you need to sign up and sign in to get an authentication token.
 
-**Using AWS CLI (Example):**
-
 a.  **Sign Up:**
-    ```bash
-    aws cognito-idp sign-up --client-id <YOUR_COGNITO_USER_POOL_CLIENT_ID> --username testuser --password YourSecurePassword1! --user-attributes Name=email,Value=testuser@example.com
-    ```
-    Replace `<YOUR_COGNITO_USER_POOL_CLIENT_ID>` with the Client ID from your deployed Cognito User Pool. You can find this in the AWS Console under Cognito -> User Pools -> Your User Pool -> App integration -> App clients and analytics.
+
+```bash
+aws cognito-idp sign-up --client-id <YOUR_COGNITO_USER_POOL_CLIENT_ID> --username testuser --password YourSecurePassword1! --user-attributes Name=email,Value=testuser@example.com
+```
+
+    
+Replace `<YOUR_COGNITO_USER_POOL_CLIENT_ID>` with the Client ID from your deployed Cognito User Pool. You can find this in the AWS Console under Cognito -> User Pools -> Your User Pool -> App integration -> App clients and analytics.
 
 b.  **Confirm User (if auto-verification is not enabled or email is not configured):**
-    ```bash
-    aws cognito-idp admin-confirm-sign-up --user-pool-id <YOUR_COGNITO_USER_POOL_ID> --username testuser
-    ```
-    Replace `<YOUR_COGNITO_USER_POOL_ID>` with your User Pool ID.
+```bash
+aws cognito-idp admin-confirm-sign-up --user-pool-id <YOUR_COGNITO_USER_POOL_ID> --username testuser
+```
+    
+Replace `<YOUR_COGNITO_USER_POOL_ID>` with your User Pool ID.
 
 c.  **Sign In:**
-    ```bash
-    aws cognito-idp initiate-auth --auth-flow USER_PASSWORD_AUTH --client-id <YOUR_COGNITO_USER_POOL_CLIENT_ID> --auth-parameters USERNAME=testuser,PASSWORD=YourSecurePassword1!
-    ```
-    This command will return an `AuthenticationResult` object containing an `IdToken` and `AccessToken`. You will use the `IdToken` for authenticating API Gateway requests.
+```bash
+aws cognito-idp initiate-auth --auth-flow USER_PASSWORD_AUTH --client-id <YOUR_COGNITO_USER_POOL_CLIENT_ID> --auth-parameters USERNAME=testuser,PASSWORD=YourSecurePassword1!
+```
 
-### 2. Get Pre-Signed S3 Upload URL (GET /upload-url)
+This command will return an `AuthenticationResult` object containing an `IdToken` and `AccessToken`. You will use the `IdToken` for authenticating API Gateway requests.
+
+#### 2. Get Pre-Signed S3 Upload URL (GET /upload-url)
 This API allows you to obtain a pre-signed URL to directly upload media content to an S3 bucket. This is the first step before submitting a post with media.
 
 -   **Method:** `GET`
@@ -149,9 +178,12 @@ This API allows you to obtain a pre-signed URL to directly upload media content 
 -   `fileName`: The desired name of the file in the S3 bucket (e.g., `my-image.jpg`, `videos/my-video.mp4`).
 -   `contentType`: The MIME type of the file (e.g., `image/jpeg`, `video/mp4`).
 
+
 **Example using `curl`:**
 ```bash
 # 1. Get the pre-signed URL
+
+
 curl -X GET \
   -H "Authorization: Bearer <YOUR_ID_TOKEN>" \
   "YOUR_API_GATEWAY_URL/upload-url?fileName=my-test-image.jpg&contentType=image/jpeg"
@@ -184,7 +216,7 @@ curl -X POST <PRE_SIGNED_URL> \
   -F "file=@/path/to/your/local/image.jpg"
 ```
 
-### 3. Submit Content API (POST /submit)
+#### 3. Submit Content API (POST /submit)
 This API allows you to submit social media content for analysis. It's integrated with SQS, so the analysis happens asynchronously.
 
 -   **Method:** `POST`
@@ -217,7 +249,7 @@ curl -X POST \
   YOUR_API_GATEWAY_URL/submit
 ```
 
-### 4. Get Analysis Results API (GET /results/{postId})
+#### 4. Get Analysis Results API (GET /results/{postId})
 This API allows you to retrieve the analysis results for a previously submitted post.
 
 -   **Method:** `GET`
@@ -232,6 +264,7 @@ curl -X GET \
   YOUR_API_GATEWAY_URL/results/my-first-post
 ```
 Replace `my-first-post` with the `postId` you submitted. It might take a few moments for the `ProcessPostLambda` to analyze the content and store the results, so you might need to try fetching the results a few times.
+
 
 ## Running Tests
 To run the unit and infrastructure tests locally:
