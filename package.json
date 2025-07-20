@@ -1,0 +1,53 @@
+{
+  "name": "social-impact-ethics-engine",
+  "version": "1.0.0",
+  "description": "Integrated Social Impact Scoring &amp; Ethical Insights",
+  "main": "index.js",
+  "bin": {
+    "social-impact-ethics-engine": "dist/cdk/main.js"
+  },
+  "scripts": {
+    "build": "tsc && npm run build:lambdas",
+    "build:lambdas": "esbuild src/lambdas/*.ts --bundle --outdir=dist/lambdas --platform=node --target=node20 --external:aws-sdk",
+    "watch": "tsc -w",
+    "cdk": "cdk",
+    "test": "jest",
+    "synth": "npx cdk synth",
+    "deploy": "npm run synth && npm run build && npx cdk deploy --all --require-approval never --outputs-file stack-output.json",
+    "bootstrap": "npx cdk bootstrap"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manju-muthuraj/social-impact-ethics-engine.git"
+  },
+  "keywords": [],
+  "author": "Manjunatha M",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manju-muthuraj/social-impact-ethics-engine/issues"
+  },
+  "homepage": "https://github.com/manju-muthuraj/social-impact-ethics-engine#readme",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.14",
+    "aws-sdk-client-mock": "^4.1.0",
+    "esbuild": "^0.25.6",
+    "jest": "^30.0.4",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3",
+    "@aws-sdk/client-s3": "^3.848.0",
+    "@aws-sdk/s3-request-presigner": "^3.848.0",
+    "@aws-sdk/s3-presigned-post": "^3.848.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.848.0",
+    "@aws-sdk/client-comprehend": "^3.848.0",
+    "@aws-sdk/client-dynamodb": "^3.848.0",
+    "@aws-sdk/client-lambda": "^3.848.0",
+    "@aws-sdk/client-rekognition": "^3.848.0",
+    "@aws-sdk/client-sqs": "^3.848.0",
+    "@aws-sdk/lib-dynamodb": "^3.848.0",
+    "@types/aws-lambda": "^8.10.150",
+    "aws-cdk-lib": "^2.206.0"
+  }
+}

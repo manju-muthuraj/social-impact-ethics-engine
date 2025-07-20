@@ -1,0 +1,1699 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`SocialImpactStack should match the snapshot 1`] = `
+{
+  "Mappings": {
+    "LatestNodeRuntimeMap": {
+      "af-south-1": {
+        "value": "nodejs22.x",
+      },
+      "ap-east-1": {
+        "value": "nodejs22.x",
+      },
+      "ap-east-2": {
+        "value": "nodejs22.x",
+      },
+      "ap-northeast-1": {
+        "value": "nodejs22.x",
+      },
+      "ap-northeast-2": {
+        "value": "nodejs22.x",
+      },
+      "ap-northeast-3": {
+        "value": "nodejs22.x",
+      },
+      "ap-south-1": {
+        "value": "nodejs22.x",
+      },
+      "ap-south-2": {
+        "value": "nodejs22.x",
+      },
+      "ap-southeast-1": {
+        "value": "nodejs22.x",
+      },
+      "ap-southeast-2": {
+        "value": "nodejs22.x",
+      },
+      "ap-southeast-3": {
+        "value": "nodejs22.x",
+      },
+      "ap-southeast-4": {
+        "value": "nodejs22.x",
+      },
+      "ap-southeast-5": {
+        "value": "nodejs22.x",
+      },
+      "ap-southeast-7": {
+        "value": "nodejs22.x",
+      },
+      "ca-central-1": {
+        "value": "nodejs22.x",
+      },
+      "ca-west-1": {
+        "value": "nodejs22.x",
+      },
+      "cn-north-1": {
+        "value": "nodejs22.x",
+      },
+      "cn-northwest-1": {
+        "value": "nodejs22.x",
+      },
+      "eu-central-1": {
+        "value": "nodejs22.x",
+      },
+      "eu-central-2": {
+        "value": "nodejs22.x",
+      },
+      "eu-isoe-west-1": {
+        "value": "nodejs18.x",
+      },
+      "eu-north-1": {
+        "value": "nodejs22.x",
+      },
+      "eu-south-1": {
+        "value": "nodejs22.x",
+      },
+      "eu-south-2": {
+        "value": "nodejs22.x",
+      },
+      "eu-west-1": {
+        "value": "nodejs22.x",
+      },
+      "eu-west-2": {
+        "value": "nodejs22.x",
+      },
+      "eu-west-3": {
+        "value": "nodejs22.x",
+      },
+      "eusc-de-east-1": {
+        "value": "nodejs22.x",
+      },
+      "il-central-1": {
+        "value": "nodejs22.x",
+      },
+      "me-central-1": {
+        "value": "nodejs22.x",
+      },
+      "me-south-1": {
+        "value": "nodejs22.x",
+      },
+      "mx-central-1": {
+        "value": "nodejs22.x",
+      },
+      "sa-east-1": {
+        "value": "nodejs22.x",
+      },
+      "us-east-1": {
+        "value": "nodejs22.x",
+      },
+      "us-east-2": {
+        "value": "nodejs22.x",
+      },
+      "us-gov-east-1": {
+        "value": "nodejs22.x",
+      },
+      "us-gov-west-1": {
+        "value": "nodejs22.x",
+      },
+      "us-iso-east-1": {
+        "value": "nodejs18.x",
+      },
+      "us-iso-west-1": {
+        "value": "nodejs18.x",
+      },
+      "us-isob-east-1": {
+        "value": "nodejs18.x",
+      },
+      "us-isob-west-1": {
+        "value": "nodejs18.x",
+      },
+      "us-west-1": {
+        "value": "nodejs22.x",
+      },
+      "us-west-2": {
+        "value": "nodejs22.x",
+      },
+    },
+  },
+  "Outputs": {
+    "ApiEndpoint": {
+      "Description": "The endpoint URL for the API",
+      "Export": {
+        "Name": "ApiEndpoint",
+      },
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "SocialImpactApiD8F51ACC",
+            },
+            ".execute-api.",
+            {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            {
+              "Ref": "SocialImpactApiDeploymentStageprod70F16B78",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "SocialImpactApiEndpoint50214C96": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "SocialImpactApiD8F51ACC",
+            },
+            ".execute-api.",
+            {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            {
+              "Ref": "SocialImpactApiDeploymentStageprod70F16B78",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "UserPoolClientId": {
+      "Description": "The ID of the Cognito User Pool Client",
+      "Value": {
+        "Ref": "SocialImpactUserPoolClient63DF4CAD",
+      },
+    },
+    "UserPoolId": {
+      "Description": "The ID of the Cognito User Pool",
+      "Value": {
+        "Ref": "SocialImpactUserPool529E7665",
+      },
+    },
+  },
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "AnalysisResultsTable7FFFA52B": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "postId",
+            "AttributeType": "S",
+          },
+        ],
+        "BillingMode": "PAY_PER_REQUEST",
+        "KeySchema": [
+          {
+            "AttributeName": "postId",
+            "KeyType": "HASH",
+          },
+        ],
+        "TableName": "social-impact-analysis-results",
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "CognitoAuthorizerF3215DBC": {
+      "Properties": {
+        "IdentitySource": "method.request.header.Authorization",
+        "Name": "TestStackCognitoAuthorizer3CC829B7",
+        "ProviderARNs": [
+          {
+            "Fn::GetAtt": [
+              "SocialImpactUserPool529E7665",
+              "Arn",
+            ],
+          },
+        ],
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+        "Type": "COGNITO_USER_POOLS",
+      },
+      "Type": "AWS::ApiGateway::Authorizer",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+      "DependsOn": [
+        "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip",
+        },
+        "Description": {
+          "Fn::Join": [
+            "",
+            [
+              "Lambda function for auto-deleting objects in ",
+              {
+                "Ref": "MediaContentBucket2B86E575",
+              },
+              " S3 bucket.",
+            ],
+          ],
+        },
+        "Handler": "index.handler",
+        "MemorySize": 128,
+        "Role": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+            "Arn",
+          ],
+        },
+        "Runtime": {
+          "Fn::FindInMap": [
+            "LatestNodeRuntimeMap",
+            {
+              "Ref": "AWS::Region",
+            },
+            "value",
+          ],
+        },
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GeneratePresignedUrlLambdaBD396619": {
+      "DependsOn": [
+        "GeneratePresignedUrlLambdaServiceRoleDefaultPolicy787B6580",
+        "GeneratePresignedUrlLambdaServiceRoleD3347AFA",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "54ac68221232c7b4195dec1a452bcb287411d05e906c8d7fd5b6be96d57edc8e.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "MEDIA_BUCKET_NAME": {
+              "Ref": "MediaContentBucket2B86E575",
+            },
+          },
+        },
+        "Handler": "generate-presigned-url.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "GeneratePresignedUrlLambdaServiceRoleD3347AFA",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "GeneratePresignedUrlLambdaServiceRoleD3347AFA": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GeneratePresignedUrlLambdaServiceRoleDefaultPolicy787B6580": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "MediaContentBucket2B86E575",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "MediaContentBucket2B86E575",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GeneratePresignedUrlLambdaServiceRoleDefaultPolicy787B6580",
+        "Roles": [
+          {
+            "Ref": "GeneratePresignedUrlLambdaServiceRoleD3347AFA",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "GetResultsLambda05DCC6D0": {
+      "DependsOn": [
+        "GetResultsLambdaServiceRoleDefaultPolicy5F1550E3",
+        "GetResultsLambdaServiceRole9ADD95FA",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "54ac68221232c7b4195dec1a452bcb287411d05e906c8d7fd5b6be96d57edc8e.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "TABLE_NAME": {
+              "Ref": "AnalysisResultsTable7FFFA52B",
+            },
+          },
+        },
+        "Handler": "get-results.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "GetResultsLambdaServiceRole9ADD95FA",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "GetResultsLambdaServiceRole9ADD95FA": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "GetResultsLambdaServiceRoleDefaultPolicy5F1550E3": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "AnalysisResultsTable7FFFA52B",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Ref": "AWS::NoValue",
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "GetResultsLambdaServiceRoleDefaultPolicy5F1550E3",
+        "Roles": [
+          {
+            "Ref": "GetResultsLambdaServiceRole9ADD95FA",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "MediaContentBucket2B86E575": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "BucketName": {
+          "Fn::Join": [
+            "",
+            [
+              "social-impact-media-",
+              {
+                "Ref": "AWS::AccountId",
+              },
+              "-",
+              {
+                "Ref": "AWS::Region",
+              },
+            ],
+          ],
+        },
+        "Tags": [
+          {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+        ],
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "MediaContentBucketAutoDeleteObjectsCustomResource7D8D45BD": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "MediaContentBucketPolicy2F405E83",
+      ],
+      "Properties": {
+        "BucketName": {
+          "Ref": "MediaContentBucket2B86E575",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "MediaContentBucketPolicy2F405E83": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "MediaContentBucket2B86E575",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "MediaContentBucket2B86E575",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "MediaContentBucket2B86E575",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "PostAnalysisQueue17B92533": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "QueueName": "social-impact-post-analysis-queue",
+        "VisibilityTimeout": 300,
+      },
+      "Type": "AWS::SQS::Queue",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ProcessPostDLQ21A3DF59": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "MessageRetentionPeriod": 604800,
+        "QueueName": "social-impact-process-post-dlq",
+      },
+      "Type": "AWS::SQS::Queue",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ProcessPostLambda6184FC09": {
+      "DependsOn": [
+        "ProcessPostLambdaServiceRoleDefaultPolicy1E4EACC7",
+        "ProcessPostLambdaServiceRole70969FF9",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "54ac68221232c7b4195dec1a452bcb287411d05e906c8d7fd5b6be96d57edc8e.zip",
+        },
+        "DeadLetterConfig": {
+          "TargetArn": {
+            "Fn::GetAtt": [
+              "ProcessPostDLQ21A3DF59",
+              "Arn",
+            ],
+          },
+        },
+        "Environment": {
+          "Variables": {
+            "MEDIA_BUCKET_NAME": {
+              "Ref": "MediaContentBucket2B86E575",
+            },
+            "TABLE_NAME": {
+              "Ref": "AnalysisResultsTable7FFFA52B",
+            },
+          },
+        },
+        "Handler": "process-post.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "ProcessPostLambdaServiceRole70969FF9",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs22.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ProcessPostLambdaServiceRole70969FF9": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ProcessPostLambdaServiceRoleDefaultPolicy1E4EACC7": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sqs:SendMessage",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "ProcessPostDLQ21A3DF59",
+                  "Arn",
+                ],
+              },
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "MediaContentBucket2B86E575",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "MediaContentBucket2B86E575",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "AnalysisResultsTable7FFFA52B",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Ref": "AWS::NoValue",
+                },
+              ],
+            },
+            {
+              "Action": [
+                "comprehend:DetectSentiment",
+                "comprehend:DetectKeyPhrases",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "rekognition:DetectModerationLabels",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": [
+                "sqs:ReceiveMessage",
+                "sqs:ChangeMessageVisibility",
+                "sqs:GetQueueUrl",
+                "sqs:DeleteMessage",
+                "sqs:GetQueueAttributes",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "PostAnalysisQueue17B92533",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ProcessPostLambdaServiceRoleDefaultPolicy1E4EACC7",
+        "Roles": [
+          {
+            "Ref": "ProcessPostLambdaServiceRole70969FF9",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "ProcessPostLambdaSqsEventSourceTestStackPostAnalysisQueue285A9CF84D8FDCFF": {
+      "Properties": {
+        "EventSourceArn": {
+          "Fn::GetAtt": [
+            "PostAnalysisQueue17B92533",
+            "Arn",
+          ],
+        },
+        "FunctionName": {
+          "Ref": "ProcessPostLambda6184FC09",
+        },
+      },
+      "Type": "AWS::Lambda::EventSourceMapping",
+    },
+    "SocialImpactApiAccountB3EE7DBD": {
+      "DeletionPolicy": "Retain",
+      "DependsOn": [
+        "SocialImpactApiD8F51ACC",
+      ],
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "SocialImpactApiCloudWatchRole1BF3865F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "SocialImpactApiCloudWatchRole1BF3865F": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "SocialImpactApiD8F51ACC": {
+      "Properties": {
+        "Name": "Social Impact API",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "SocialImpactApiDeployment4BCD087024279a97926d0c9882a1c2c2dfc4954c": {
+      "DependsOn": [
+        "SocialImpactApiOPTIONSADCBB7A3",
+        "SocialImpactApiresultspostIdGET4AD00F24",
+        "SocialImpactApiresultspostIdOPTIONS835E302B",
+        "SocialImpactApiresultspostId394246C8",
+        "SocialImpactApiresultsOPTIONS6A507690",
+        "SocialImpactApiresults4CB08932",
+        "SocialImpactApisubmitOPTIONSEE1B712D",
+        "SocialImpactApisubmitPOST0C57A750",
+        "SocialImpactApisubmitD5DF725E",
+        "SocialImpactApiuploadurlGETB6E13C6B",
+        "SocialImpactApiuploadurlOPTIONS0A3E98B4",
+        "SocialImpactApiuploadurlA7E3DB05",
+      ],
+      "Metadata": {
+        "aws:cdk:do-not-refactor": true,
+      },
+      "Properties": {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "SocialImpactApiDeploymentStageprod70F16B78": {
+      "DependsOn": [
+        "SocialImpactApiAccountB3EE7DBD",
+      ],
+      "Properties": {
+        "AccessLogSetting": {
+          "DestinationArn": {
+            "Fn::GetAtt": [
+              "SocialImpactApiLogsA743C673",
+              "Arn",
+            ],
+          },
+          "Format": "$context.identity.sourceIp $context.identity.caller $context.identity.user [$context.requestTime] "$context.httpMethod $context.resourcePath $context.protocol" $context.status $context.responseLength $context.requestId",
+        },
+        "DeploymentId": {
+          "Ref": "SocialImpactApiDeployment4BCD087024279a97926d0c9882a1c2c2dfc4954c",
+        },
+        "MethodSettings": [
+          {
+            "DataTraceEnabled": false,
+            "HttpMethod": "*",
+            "LoggingLevel": "INFO",
+            "ResourcePath": "/*",
+          },
+        ],
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "SocialImpactApiLogsA743C673": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "RetentionInDays": 731,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "SocialImpactApiOPTIONSADCBB7A3": {
+      "Properties": {
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": {
+          "Fn::GetAtt": [
+            "SocialImpactApiD8F51ACC",
+            "RootResourceId",
+          ],
+        },
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "SocialImpactApiresults4CB08932": {
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "SocialImpactApiD8F51ACC",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "results",
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "SocialImpactApiresultsOPTIONS6A507690": {
+      "Properties": {
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": {
+          "Ref": "SocialImpactApiresults4CB08932",
+        },
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "SocialImpactApiresultspostId394246C8": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "SocialImpactApiresults4CB08932",
+        },
+        "PathPart": "{postId}",
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "SocialImpactApiresultspostIdGET4AD00F24": {
+      "Properties": {
+        "AuthorizationType": "COGNITO_USER_POOLS",
+        "AuthorizerId": {
+          "Ref": "CognitoAuthorizerF3215DBC",
+        },
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "GetResultsLambda05DCC6D0",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "SocialImpactApiresultspostId394246C8",
+        },
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "SocialImpactApiresultspostIdGETApiPermissionTestStackSocialImpactApiDB6BBAA3GETresultspostId5F277BA3": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GetResultsLambda05DCC6D0",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              {
+                "Ref": "SocialImpactApiD8F51ACC",
+              },
+              "/",
+              {
+                "Ref": "SocialImpactApiDeploymentStageprod70F16B78",
+              },
+              "/GET/results/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "SocialImpactApiresultspostIdGETApiPermissionTestTestStackSocialImpactApiDB6BBAA3GETresultspostId33295F53": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GetResultsLambda05DCC6D0",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              {
+                "Ref": "SocialImpactApiD8F51ACC",
+              },
+              "/test-invoke-stage/GET/results/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "SocialImpactApiresultspostIdOPTIONS835E302B": {
+      "Properties": {
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": {
+          "Ref": "SocialImpactApiresultspostId394246C8",
+        },
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "SocialImpactApisubmitD5DF725E": {
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "SocialImpactApiD8F51ACC",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "submit",
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "SocialImpactApisubmitOPTIONSEE1B712D": {
+      "Properties": {
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": {
+          "Ref": "SocialImpactApisubmitD5DF725E",
+        },
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "SocialImpactApisubmitPOST0C57A750": {
+      "Properties": {
+        "AuthorizationType": "COGNITO_USER_POOLS",
+        "AuthorizerId": {
+          "Ref": "CognitoAuthorizerF3215DBC",
+        },
+        "HttpMethod": "POST",
+        "Integration": {
+          "Credentials": {
+            "Fn::GetAtt": [
+              "SqsIntegrationRoleCE206A4B",
+              "Arn",
+            ],
+          },
+          "IntegrationHttpMethod": "POST",
+          "IntegrationResponses": [
+            {
+              "ResponseTemplates": {
+                "application/json": "{"message": "Post submitted for analysis"}",
+              },
+              "StatusCode": "200",
+            },
+          ],
+          "RequestParameters": {
+            "integration.request.header.Content-Type": "'application/x-www-form-urlencoded'",
+          },
+          "RequestTemplates": {
+            "application/json": "Action=SendMessage&MessageBody=$input.body",
+          },
+          "Type": "AWS",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region",
+                },
+                ":sqs:path/",
+                {
+                  "Fn::GetAtt": [
+                    "PostAnalysisQueue17B92533",
+                    "QueueName",
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+          },
+        ],
+        "ResourceId": {
+          "Ref": "SocialImpactApisubmitD5DF725E",
+        },
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "SocialImpactApiuploadurlA7E3DB05": {
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "SocialImpactApiD8F51ACC",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "upload-url",
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "SocialImpactApiuploadurlGETApiPermissionTestStackSocialImpactApiDB6BBAA3GETuploadurl7AABE575": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GeneratePresignedUrlLambdaBD396619",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              {
+                "Ref": "SocialImpactApiD8F51ACC",
+              },
+              "/",
+              {
+                "Ref": "SocialImpactApiDeploymentStageprod70F16B78",
+              },
+              "/GET/upload-url",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "SocialImpactApiuploadurlGETApiPermissionTestTestStackSocialImpactApiDB6BBAA3GETuploadurl1279BD4E": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GeneratePresignedUrlLambdaBD396619",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              {
+                "Ref": "SocialImpactApiD8F51ACC",
+              },
+              "/test-invoke-stage/GET/upload-url",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "SocialImpactApiuploadurlGETB6E13C6B": {
+      "Properties": {
+        "AuthorizationType": "COGNITO_USER_POOLS",
+        "AuthorizerId": {
+          "Ref": "CognitoAuthorizerF3215DBC",
+        },
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "GeneratePresignedUrlLambdaBD396619",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "SocialImpactApiuploadurlA7E3DB05",
+        },
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "SocialImpactApiuploadurlOPTIONS0A3E98B4": {
+      "Properties": {
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+              },
+              "StatusCode": "204",
+            },
+          ],
+          "RequestTemplates": {
+            "application/json": "{ statusCode: 200 }",
+          },
+          "Type": "MOCK",
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+            },
+            "StatusCode": "204",
+          },
+        ],
+        "ResourceId": {
+          "Ref": "SocialImpactApiuploadurlA7E3DB05",
+        },
+        "RestApiId": {
+          "Ref": "SocialImpactApiD8F51ACC",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "SocialImpactUserPool529E7665": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "AccountRecoverySetting": {
+          "RecoveryMechanisms": [
+            {
+              "Name": "verified_email",
+              "Priority": 1,
+            },
+          ],
+        },
+        "AdminCreateUserConfig": {
+          "AllowAdminCreateUserOnly": false,
+        },
+        "AutoVerifiedAttributes": [
+          "email",
+        ],
+        "EmailVerificationMessage": "The verification code to your new account is {####}",
+        "EmailVerificationSubject": "Verify your new account",
+        "Policies": {
+          "PasswordPolicy": {
+            "MinimumLength": 8,
+            "RequireLowercase": true,
+            "RequireNumbers": true,
+            "RequireSymbols": true,
+            "RequireUppercase": true,
+          },
+        },
+        "Schema": [
+          {
+            "Mutable": true,
+            "Name": "email",
+            "Required": true,
+          },
+        ],
+        "SmsVerificationMessage": "The verification code to your new account is {####}",
+        "UserPoolName": "social-impact-user-pool",
+        "UsernameAttributes": [
+          "email",
+        ],
+        "VerificationMessageTemplate": {
+          "DefaultEmailOption": "CONFIRM_WITH_CODE",
+          "EmailMessage": "The verification code to your new account is {####}",
+          "EmailSubject": "Verify your new account",
+          "SmsMessage": "The verification code to your new account is {####}",
+        },
+      },
+      "Type": "AWS::Cognito::UserPool",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "SocialImpactUserPoolClient63DF4CAD": {
+      "Properties": {
+        "AllowedOAuthFlows": [
+          "implicit",
+          "code",
+        ],
+        "AllowedOAuthFlowsUserPoolClient": true,
+        "AllowedOAuthScopes": [
+          "profile",
+          "phone",
+          "email",
+          "openid",
+          "aws.cognito.signin.user.admin",
+        ],
+        "CallbackURLs": [
+          "https://example.com",
+        ],
+        "ClientName": "social-impact-api-client",
+        "ExplicitAuthFlows": [
+          "ALLOW_ADMIN_USER_PASSWORD_AUTH",
+          "ALLOW_USER_SRP_AUTH",
+          "ALLOW_REFRESH_TOKEN_AUTH",
+        ],
+        "GenerateSecret": false,
+        "SupportedIdentityProviders": [
+          "COGNITO",
+        ],
+        "UserPoolId": {
+          "Ref": "SocialImpactUserPool529E7665",
+        },
+      },
+      "Type": "AWS::Cognito::UserPoolClient",
+    },
+    "SqsIntegrationRoleCE206A4B": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "SqsIntegrationRoleDefaultPolicyB791FF7D": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "sqs:SendMessage",
+                "sqs:GetQueueAttributes",
+                "sqs:GetQueueUrl",
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "PostAnalysisQueue17B92533",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "SqsIntegrationRoleDefaultPolicyB791FF7D",
+        "Roles": [
+          {
+            "Ref": "SqsIntegrationRoleCE206A4B",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

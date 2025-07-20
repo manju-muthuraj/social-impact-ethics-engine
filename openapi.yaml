@@ -1,0 +1,134 @@
+openapi: 3.1.0
+info:
+  title: Social Impact & Ethics Engine API
+  version: 1.0.0
+  description: API for submitting social media content for analysis and retrieving results.
+
+servers:
+  - url: YOUR_API_GATEWAY_URL
+    description: Deployed API Gateway Endpoint
+
+paths:
+  /upload-url:
+    get:
+      summary: Get a pre-signed S3 upload URL
+      operationId: getUploadUrl
+      parameters:
+        - name: fileName
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The desired name of the file in the S3 bucket.
+        - name: contentType
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The MIME type of the file (e.g., image/jpeg, video/mp4).
+      responses:
+        '200':
+          description: Successfully generated pre-signed URL.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    description: The pre-signed URL for direct S3 upload.
+                  fields:
+                    type: object
+                    description: Form fields required for the S3 POST upload.
+        '400':
+          description: Missing query parameters.
+        '500':
+          description: Internal server error.
+      security:
+        - CognitoAuthorizer: []
+
+  /submit:
+    post:
+      summary: Submit social media content for analysis
+      operationId: submitContent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                postId:
+                  type: string
+                  description: Unique identifier for the post.
+                userId:
+                  type: string
+                  description: Identifier for the user who created the post.
+                text:
+                  type: string
+                  nullable: true
+                  description: The text content of the post.
+                mediaUrls:
+                  type: array
+                  items:
+                    type: string
+                  nullable: true
+                  description: Array of S3 URIs for media content (e.g., s3://your-bucket/your-image.jpg).
+              example:
+                postId: unique-post-id-123
+                userId: user-abc
+                text: This is a great day! Feeling positive and inclusive.
+                mediaUrls: ["s3://your-bucket-name/your-image.jpg"]
+      responses:
+        '200':
+          description: Post submitted for analysis.
+        '500':
+          description: Internal server error.
+      security:
+        - CognitoAuthorizer: []
+
+  /results/{postId}:
+    get:
+      summary: Get analysis results for a post
+      operationId: getAnalysisResults
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the post.
+      responses:
+        '200':
+          description: Successfully retrieved analysis results.
+          content:
+            application/json:
+              schema:
+                type: object # Replace with actual AnalysisResult schema if desired
+                properties:
+                  postId:
+                    type: string
+                  sentiment:
+                    type: string
+                  socialImpactScore:
+                    type: number
+                  ethicalInsights:
+                    type: array
+                    items:
+                      type: string
+        '404':
+          description: Results not found.
+        '500':
+          description: Internal server error.
+      security:
+        - CognitoAuthorizer: []
+
+securitySchemes:
+  CognitoAuthorizer:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
+    description: |-
+      Authentication using AWS Cognito User Pool ID Token.
+      Obtain a token by signing in with your Cognito user.
+      The token should be included in the Authorization header as `Bearer <ID_TOKEN>`.

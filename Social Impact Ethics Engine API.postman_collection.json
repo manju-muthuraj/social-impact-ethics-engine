@@ -1,0 +1,273 @@
+{
+  "info": {
+    "_postman_id": "a0e7b1c2-d3f4-5678-90ab-cdef12345678",
+    "name": "Social Impact Ethics Engine API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for the Social Impact Ethics Engine API. Follow the instructions in each request to use."
+  },
+  "variables": [
+    {
+      "key": "ApiEndpoint",
+      "value": "https://bqswr03gxh.execute-api.us-east-1.amazonaws.com/prod/",
+      "description": "The base URL for your API Gateway endpoint (from stack-output.json)"
+    },
+    {
+      "key": "UserPoolId",
+      "value": "us-east-1_6K4XhjJqE",
+      "description": "Your Cognito User Pool ID (from stack-output.json)"
+    },
+    {
+      "key": "UserPoolClientId",
+      "value": "1r9mem1vvqkif70d0k0n0purk7",
+      "description": "Your Cognito User Pool Client ID (from stack-output.json)"
+    },
+    {
+      "key": "IdToken",
+      "value": "YOUR_COGNITO_ID_TOKEN",
+      "description": "Your Cognito ID Token. Obtain this by running the AWS CLI command in the 'Get Auth Token' request description."
+    }
+  ],
+  "item": [
+    {
+      "name": "0. Setup: Populate Variables",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://example.com/instructions",
+          "protocol": "https",
+          "host": [
+            "example",
+            "com"
+          ],
+          "path": [
+            "instructions"
+          ]
+        },
+        "description": "### IMPORTANT: Before you start, update the Collection Variables!\n\n1.  Click on the `...` next to the collection name (`Social Impact Ethics Engine API`).\n2.  Select `Edit`.\n3.  Go to the `Variables` tab.\n4.  Update `ApiEndpoint`, `UserPoolId`, and `UserPoolClientId` with the values from your `stack-output.json` file.\n5.  The `IdToken` variable will be updated after you successfully run the 'Get Auth Token' request."
+      }
+    },
+    {
+      "name": "1. Get Auth Token (Manual AWS CLI Step)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://example.com/get-token-instructions",
+          "protocol": "https",
+          "host": [
+            "example",
+            "com"
+          ],
+          "path": [
+            "get-token-instructions"
+          ]
+        },
+        "description": "### How to get your Cognito ID Token:\n\n1.  **Ensure AWS CLI is configured** on your machine with credentials for your AWS account.\n2.  **Open your terminal** and run the following command. Replace `{{UserPoolId}}`, `{{UserPoolClientId}}`, `your_email@example.com`, and `YourPassword1!` with your actual values.\n\n    ```bash\n    aws cognito-idp admin-initiate-auth \\\n        --user-pool-id \"{{UserPoolId}}\" \\\n        --client-id \"{{UserPoolClientId}}\" \\\n        --auth-flow ADMIN_NO_SRP_AUTH \\\n        --auth-parameters USERNAME=\"your_email@example.com\",PASSWORD=\"YourPassword1!\"\n    ```\n\n3.  **If you get `NEW_PASSWORD_REQUIRED`:** You must set a new password first. Copy the `Session` string from the output and run:\n\n    ```bash\n    aws cognito-idp admin-respond-to-auth-challenge \\\n        --user-pool-id \"{{UserPoolId}}\" \\\n        --client-id \"{{UserPoolClientId}}\" \\\n        --challenge-name NEW_PASSWORD_REQUIRED \\\n        --session \"YOUR_SESSION_STRING\" \\\n        --challenge-responses USERNAME=\"your_email@example.com\",NEW_PASSWORD=\"YourNewStrongPassword1!\"\n    ```\n\n4.  **Copy the `IdToken`:** From the successful response of either command, copy the long string value of the `IdToken`.\n5.  **Update Postman Variable:** Click on the `...` next to the collection name, select `Edit`, go to the `Variables` tab, and paste your `IdToken` into the `IdToken` variable's `CURRENT VALUE` field. This token will be used for all subsequent requests."
+      }
+    },
+    {
+      "name": "2. Get Presigned URL for Upload",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{ApiEndpoint}}upload-url?fileName=my-test-image.jpg&contentType=image/jpeg",
+          "host": [
+            "{{ApiEndpoint}}"
+          ],
+          "path": [
+            "upload-url"
+          ],
+          "query": [
+            {
+              "key": "fileName",
+              "value": "my-test-image.jpg",
+              "description": "The desired name of the file in S3"
+            },
+            {
+              "key": "contentType",
+              "value": "image/jpeg",
+              "description": "The MIME type of the file (e.g., image/png, application/pdf)"
+            }
+          ]
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{IdToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "description": "Call this endpoint to get a temporary, presigned URL and fields for uploading a file directly to S3.\n\n**IMPORTANT:** After getting the response, you MUST manually copy the `url` and all `fields` into the '3. Upload File to S3' request body."
+      },
+      "response": []
+    },
+    {
+      "name": "3. Upload File to S3 (using Presigned URL)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "Content-Type",
+              "value": "image/jpeg",
+              "description": "Copy from 'Get Presigned URL' response -> fields.Content-Type",
+              "type": "text"
+            },
+            {
+              "key": "bucket",
+              "value": "social-impact-media-YOUR_ACCOUNT_ID-YOUR_REGION",
+              "description": "Copy from 'Get Presigned URL' response -> fields.bucket",
+              "type": "text"
+            },
+            {
+              "key": "X-Amz-Algorithm",
+              "value": "AWS4-HMAC-SHA256",
+              "description": "Copy from 'Get Presigned URL' response -> fields.X-Amz-Algorithm",
+              "type": "text"
+            },
+            {
+              "key": "X-Amz-Credential",
+              "value": "YOUR_CREDENTIAL",
+              "description": "Copy from 'Get Presigned URL' response -> fields.X-Amz-Credential",
+              "type": "text"
+            },
+            {
+              "key": "X-Amz-Date",
+              "value": "YOUR_DATE",
+              "description": "Copy from 'Get Presigned URL' response -> fields.X-Amz-Date",
+              "type": "text"
+            },
+            {
+              "key": "X-Amz-Security-Token",
+              "value": "YOUR_SECURITY_TOKEN",
+              "description": "Copy from 'Get Presigned URL' response -> fields.X-Amz-Security-Token (very long string)",
+              "type": "text"
+            },
+            {
+              "key": "key",
+              "value": "my-test-image.jpg",
+              "description": "Copy from 'Get Presigned URL' response -> fields.key (should match fileName from previous request)",
+              "type": "text"
+            },
+            {
+              "key": "Policy",
+              "value": "YOUR_POLICY",
+              "description": "Copy from 'Get Presigned URL' response -> fields.Policy (very long string)",
+              "type": "text"
+            },
+            {
+              "key": "X-Amz-Signature",
+              "value": "YOUR_SIGNATURE",
+              "description": "Copy from 'Get Presigned URL' response -> fields.X-Amz-Signature",
+              "type": "text"
+            },
+            {
+              "key": "file",
+              "type": "file",
+              "src": "/path/to/your/local/file.jpg",
+              "description": "Select the actual file you want to upload here."
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://social-impact-media-YOUR_ACCOUNT_ID-YOUR_REGION.s3.us-east-1.amazonaws.com/",
+          "protocol": "https",
+          "host": [
+            "social-impact-media-YOUR_ACCOUNT_ID-YOUR_REGION",
+            "s3",
+            "us-east-1",
+            "amazonaws",
+            "com"
+          ],
+          "path": [
+            ""
+          ]
+        },
+        "description": "This request uploads the file to S3 using the presigned URL and fields obtained from the previous 'Get Presigned URL' request.\n\n**IMPORTANT:**\n1.  **Update the URL:** Copy the `url` from the 'Get Presigned URL' response and paste it into the URL field for this request.\n2.  **Copy ALL 'fields':** For each key-value pair in the `fields` object from the 'Get Presigned URL' response, copy the `key` and `value` into the corresponding `formdata` entries below.\n3.  **Select your file:** For the `file` entry, change its type to 'File' and select the actual file from your local machine."
+      },
+      "response": []
+    },
+    {
+      "name": "4. Submit Post for Analysis",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{
+  "postId": "unique-post-id-123",
+  "text": "This is a sample text for analysis.",
+  "mediaUrls": ["my-test-image.jpg"] 
+}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{ApiEndpoint}}submit",
+          "host": [
+            "{{ApiEndpoint}}"
+          ],
+          "path": [
+            "submit"
+          ]
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{IdToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "description": "Submits a post (text and/or media reference) for social impact analysis. The `mediaUrl` should be the `fileName` used when generating the presigned URL and uploading to S3."
+      },
+      "response": []
+    },
+    {
+      "name": "5. Get Analysis Results",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{ApiEndpoint}}results/unique-post-id-123",
+          "host": [
+            "{{ApiEndpoint}}"
+          ],
+          "path": [
+            "results",
+            "unique-post-id-123"
+          ]
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{IdToken}}",
+              "type": "string"
+            }
+          ]
+        },
+        "description": "Retrieves the social impact analysis results for a given `postId`."
+      },
+      "response": []
+    }
+  ]
+}
