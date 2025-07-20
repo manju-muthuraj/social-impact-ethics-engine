@@ -228,7 +228,6 @@ This API allows you to submit social media content for analysis. It's integrated
     ```json
     {
       "postId": "unique-post-id-123",
-      "userId": "user-abc",
       "text": "This is a great day! Feeling positive and inclusive.",
       "mediaUrls": ["s3://social-impact-media-<ACCOUNT_ID>-<REGION>/my-test-image.jpg"]
     }
@@ -242,7 +241,6 @@ curl -X POST \
   -H "Authorization: Bearer <YOUR_ID_TOKEN>" \
   -d '{
         "postId": "my-first-post",
-        "userId": "user-123",
         "text": "This is an amazing and positive message for everyone!",
         "mediaUrls": ["s3://social-impact-media-<ACCOUNT_ID>-<REGION>/my-first-image.jpg"]
       }' \
