@@ -241,7 +241,6 @@ curl -X POST \
   -H "Authorization: Bearer <YOUR_ID_TOKEN>" \
   -d '{
         "postId": "my-first-post",
-        "userId": "user-123",
         "text": "This is an amazing and positive message for everyone!",
         "mediaUrls": ["s3://social-impact-media-<ACCOUNT_ID>-<REGION>/my-first-image.jpg"]
       }' \
